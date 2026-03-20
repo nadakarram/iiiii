@@ -32,29 +32,32 @@ export function DemoVideo() {
   return (
     <section
       id="demo"
-      className="py-24 md:py-32 bg-section-alt border-t border-border"
+      className="py-20 sm:py-24 md:py-32 bg-section-alt border-t border-border"
     >
-      <div className="mx-auto max-w-7xl px-6">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <p className="text-sm text-primary font-medium tracking-wide uppercase mb-3">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+          <p className="text-xs sm:text-sm text-primary font-medium tracking-wide uppercase mb-3">
             See It in Action
           </p>
-          <h2 className="font-[family-name:var(--font-heading)] text-3xl md:text-4xl font-bold text-foreground leading-tight text-balance">
+
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl sm:text-3xl md:text-4xl font-bold text-foreground leading-tight">
             Watch Our AI Detection System at Work
           </h2>
-          <p className="mt-6 text-muted-foreground leading-relaxed text-pretty">
-            Experience how SensVX identifies, classifies, and reports
-            cable defects in real time on a live production line -- powered by
-            our partnership with Elsewedy Electric.
+
+          <p className="mt-5 sm:mt-6 text-sm sm:text-base text-muted-foreground leading-relaxed">
+            Experience how SensVX identifies, classifies, and reports cable defects in real time on a live production line — powered by our partnership with Elsewedy Electric.
           </p>
         </div>
 
-        {/* Video Player Area */}
+        {/* Video */}
         <div className="max-w-5xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden border border-border bg-card shadow-xl shadow-primary/5">
-            {/* Aspect ratio container */}
-            <div className="relative aspect-video">
+          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-border bg-card shadow-xl shadow-primary/5">
+
+            <div className="relative aspect-video w-full max-h-[70vh] sm:max-h-none">
+
+              {/* Video */}
               {isPlaying ? (
                 <iframe
                   className="absolute inset-0 w-full h-full"
@@ -63,12 +66,13 @@ export function DemoVideo() {
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
-                ></iframe>
+                />
               ) : (
                 <>
-                  {/* Thumbnail / Poster */}
+                  {/* Background */}
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-card to-accent/10">
-                    {/* Simulated sensor grid overlay */}
+
+                    {/* Grid */}
                     <div className="absolute inset-0 opacity-[0.04]">
                       <svg width="100%" height="100%">
                         <defs>
@@ -91,36 +95,21 @@ export function DemoVideo() {
                       </svg>
                     </div>
 
-                    {/* Scanning line animation */}
-                    <div className="absolute inset-0 overflow-hidden">
-                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
-                      <div
-                        className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/60 to-transparent"
-                        style={{
-                          animation: "scanDown 3s ease-in-out infinite",
-                        }}
-                      />
-                    </div>
+                    {/* ================= FULL UI (hidden on ≤358px) ================= */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 sm:gap-6 px-4 text-center max-[358px]:hidden">
 
-                    {/* Center content */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-6">
-                      {/* Sensor icon */}
+                      {/* Icon */}
                       <div className="relative">
                         <div className="absolute inset-0 rounded-full bg-primary/20 animate-ping" />
-                        <div className="relative h-20 w-20 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center backdrop-blur-sm">
+                        <div className="relative h-14 w-14 sm:h-20 sm:w-20 rounded-full bg-primary/10 border-2 border-primary/30 flex items-center justify-center backdrop-blur-sm">
                           <svg
-                            width="40"
-                            height="40"
+                            width="28"
+                            height="28"
                             viewBox="0 0 32 32"
                             fill="none"
-                            className="text-primary"
+                            className="sm:w-10 sm:h-10 text-primary"
                           >
-                            <circle
-                              cx="16"
-                              cy="16"
-                              r="4"
-                              fill="currentColor"
-                            />
+                            <circle cx="16" cy="16" r="4" fill="currentColor" />
                             <circle
                               cx="16"
                               cy="16"
@@ -141,45 +130,59 @@ export function DemoVideo() {
                         </div>
                       </div>
 
-                      <div className="text-center">
-                        <p className="font-[family-name:var(--font-heading)] text-lg font-semibold text-foreground">
+                      <div>
+                        <p className="font-[family-name:var(--font-heading)] text-base sm:text-lg font-semibold text-foreground">
                           SensVX Demo
                         </p>
-                        <p className="text-sm text-muted-foreground mt-1">
+                        <p className="text-xs sm:text-sm text-muted-foreground mt-1">
                           Cable Defect Detection in Real Time
                         </p>
                       </div>
 
-                      {/* Play button */}
+                      {/* Main Button (hidden on tiny screens) */}
                       <button
                         onClick={() => setIsPlaying(true)}
-                        className="group flex items-center gap-3 bg-primary text-primary-foreground px-8 py-3.5 rounded-full font-medium hover:opacity-90 transition-all shadow-lg shadow-primary/25"
-                        aria-label="Play demo video"
+                        className="flex items-center gap-2 sm:gap-3 bg-primary text-primary-foreground px-5 sm:px-8 py-2.5 sm:py-3.5 rounded-full font-medium hover:opacity-90 active:scale-95 transition-all shadow-lg shadow-primary/25"
                       >
-                        <Play className="h-5 w-5 fill-current" />
-                        <span className="text-sm">Watch Demo</span>
+                        <Play className="h-4 w-4 sm:h-5 sm:w-5 fill-current" />
+                        <span className="text-xs sm:text-sm">Watch Demo</span>
                       </button>
                     </div>
 
-                    {/* Corner HUD elements */}
-                    <div className="absolute top-4 left-4 flex items-center gap-2">
+                    {/* ================= ULTRA SMALL UI (≤358px) ================= */}
+                    {!isPlaying && (
+                      <div className="absolute inset-0 flex items-center justify-center hidden max-[358px]:flex">
+                        <button
+                          onClick={() => setIsPlaying(true)}
+                          className="bg-primary text-primary-foreground px-6 py-3 rounded-full text-xs font-medium active:scale-95 shadow-lg"
+                        >
+                          Play Demo
+                        </button>
+                      </div>
+                    )}
+
+                    {/* HUD (hidden on ultra small) */}
+                    <div className="absolute top-3 sm:top-4 left-3 sm:left-4 flex items-center gap-2 max-[358px]:hidden">
                       <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
-                      <span className="text-xs font-mono text-muted-foreground">
+                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
                         SENSOR ARRAY ONLINE
                       </span>
                     </div>
-                    <div className="absolute top-4 right-4">
-                      <span className="text-xs font-mono text-muted-foreground">
+
+                    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 max-[358px]:hidden">
+                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
                         RES 4K / 120fps
                       </span>
                     </div>
-                    <div className="absolute bottom-4 left-4">
-                      <span className="text-xs font-mono text-muted-foreground">
+
+                    <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 max-[358px]:hidden">
+                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
                         AI MODEL v3.2
                       </span>
                     </div>
-                    <div className="absolute bottom-4 right-4 flex items-center gap-2">
-                      <span className="text-xs font-mono text-muted-foreground">
+
+                    <div className="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 flex items-center gap-2 max-[358px]:hidden">
+                      <span className="text-[10px] sm:text-xs font-mono text-muted-foreground">
                         ELSEWEDY ELECTRIC
                       </span>
                       <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
@@ -190,21 +193,22 @@ export function DemoVideo() {
             </div>
           </div>
 
-          {/* Feature highlights below video */}
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          {/* Features */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             {features.map((feature) => (
               <div
                 key={feature.label}
-                className="flex flex-col items-center text-center gap-3 rounded-xl border border-border bg-card p-5"
+                className="flex flex-col items-center text-center gap-3 rounded-xl border border-border bg-card p-4 sm:p-5"
               >
-                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                  <feature.icon className="h-5 w-5 text-primary" />
+                <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                  <feature.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
                 </div>
+
                 <div>
-                  <p className="text-sm font-semibold text-foreground">
+                  <p className="text-xs sm:text-sm font-semibold text-foreground">
                     {feature.label}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  <p className="text-[11px] sm:text-xs text-muted-foreground mt-1 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -212,26 +216,12 @@ export function DemoVideo() {
             ))}
           </div>
 
-          {/* Note about replacing video */}
-          <p className="text-center text-xs text-muted-foreground mt-8">
-            Replace the embedded video URL with your actual product demo to
-            showcase your cable inspection system.
+          {/* Note */}
+          <p className="text-center text-[11px] sm:text-xs text-muted-foreground mt-6 sm:mt-8">
+            Replace the embedded video URL with your actual product demo to showcase your cable inspection system.
           </p>
         </div>
       </div>
-
-      {/* Scanning animation keyframes */}
-      <style jsx>{`
-        @keyframes scanDown {
-          0%,
-          100% {
-            top: 0%;
-          }
-          50% {
-            top: 100%;
-          }
-        }
-      `}</style>
     </section>
   )
 }
